@@ -1,6 +1,6 @@
 from session_manager import session
 from login import *
-from client_task import clients
+
 import subprocess
 import os
 
@@ -12,9 +12,12 @@ while True:
     if opt=='1':
         a=login()
         print(a)
-        if a['message']=='Login Successfully':
-            acc_no=a['acc_no']
-            clients(acc_no)
+        if a=={'message':'Login Sucessfull.'}:
+            print('--Welcome To Transfer Window--')
+            acc_no=str(input('Enter Receiver\'s Account Number : '))
+            amount=int(input('Enter Amount : '))
+            response=session.post('http://127.0.0.1:8000/transfer',json={'receiver_acc_no':acc_no,'amount':amount})
+            print(response.json())
     elif opt=='2':
         b=signup()
         print(b)
