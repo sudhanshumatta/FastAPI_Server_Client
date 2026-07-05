@@ -1,38 +1,41 @@
-from session_manager import session
+from .session_manager import session
 
 import subprocess
 import os
+import time 
+import pwinput
+
 def clients(acc_no):
     while True:
         subprocess.run('cls'if os.name=='nt' else 'clear',shell=True)
-        print('--Welcome SB Banking--')
+        print('--Welcome to SB Banking--')
         print('1. Transfer  \n2. Status \n3. Delete Profile \n4. History \n5. Logout')
         opt=str(input('Enter Your Operation : '))
         if opt=='1':
             print('--Welcome To Transfer Window--')
             receiver_acc_no=str(input('Enter Receiver\'s Account Number : '))
-            pin=str(input('Enter PIN : '))
+            pin=pwinput.pwinput(prompt='Enter Pin : ',mask='*')
             amount=int(input('Enter Amount : '))
             response=session.patch('http://127.0.0.1:8000/Transfer',json={'your_acc_no':acc_no,'receiver_acc_no':receiver_acc_no,'pin':pin,'credit':amount,'debit':amount})
             print(response.json())
         elif opt=='2':
             print('--Showing Your Bank Status--')
-            pin=str(input('Enter PIN : '))
+            pin=pwinput.pwinput(prompt='Enter Pin : ',mask='*')
             response=session.post(f'http://127.0.0.1:8000/Status',json={'acc_no':acc_no,'pin':pin})
             print(response.json())
         elif opt=='3':
-            print('--Thanks For Using Our banking Serveice--')
-            pin=str(input('Enter PIN : '))
+            print('--Thanks For Using Our banking Service--')
+            pin=pwinput.pwinput(prompt='Enter Pin : ',mask='*')
             response=session.delete(f'http://127.0.0.1:8000/DeleteUser',json={'acc_no':acc_no,'pin':pin})
             print(response.json())
-            input('Press Enter To Continue..')
+            time.sleep(3)
             break
         elif opt=='4':
-            pin=str(input('Enter Your Pin : '))
+            pin=pwinput.pwinput(prompt='Enter Pin : ',mask='*')
             response=session.post('http://127.0.0.1:8000/History',json={'acc_no':acc_no,'pin':pin})
             print(response.json())
         elif opt=='5':
-            print('--Loging Out--')
+            print('--Logging Out--')
             break
         else:
             print('wrong input!')

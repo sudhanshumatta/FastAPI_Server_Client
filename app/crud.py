@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from model import *
-from schema import *
+from .model import *
+from .schema import *
 from datetime import datetime
 import secrets
 import string

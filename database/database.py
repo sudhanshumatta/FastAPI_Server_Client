@@ -7,7 +7,6 @@ BASE_DIR=Path(__file__).resolve().parent
 DB_PATH=BASE_DIR/"mydb.db"
 
 engine=create_engine(f"sqlite:///{DB_PATH}")
-
 class Base(DeclarativeBase):
     pass
 

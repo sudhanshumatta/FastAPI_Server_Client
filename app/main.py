@@ -3,9 +3,9 @@ from fastapi.responses import JSONResponse
 
 from sqlalchemy.orm import Session
 
-from schema import *
-from crud import *
-from database import get_db
+from .schema import *
+from .crud import *
+from database.database import get_db
 
 app=FastAPI()
 

@@ -1,9 +1,9 @@
 from sqlalchemy import String,Float,Boolean,ForeignKey,DateTime
 from sqlalchemy import Enum as sqlenum
 from sqlalchemy.orm import Mapped,mapped_column,relationship
-from database import Base,engine
+from database.database import Base,engine
 from datetime import datetime
-from schema import TransactionType
+from .schema import TransactionType
 
 class Users(Base):
     __tablename__='users'
