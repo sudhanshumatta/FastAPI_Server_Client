@@ -26,7 +26,7 @@ while True:
         acc_no=str(input('Enter Account Number : '))
         amount=int(input('Enter Amount : '))
         pin=pwinput.pwinput(prompt='Enter Pin : ',mask='*')
-        response=admin_session.patch(f'{base_path}/Deductmoney',json={'acc_no':acc_no,'pin':pin,'debit':amount})
+        response=admin_session.patch(f'{base_path}/DeductMoney',json={'acc_no':acc_no,'pin':pin,'debit':amount})
         print(response.json())
     elif opt=='4':
         acc_no=str(input('Enter Account Number : '))
